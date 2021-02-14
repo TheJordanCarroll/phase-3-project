@@ -37,6 +37,7 @@ Queen.create(name: "Rock M. Sakura", season: 12, grid_image: "https://static.wik
 Queen.create(name: "Sherry Pie", season: 12, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/3/31/SherryS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172925", freeze_frame: "", gif: "https://j.gifs.com/71jLjr.gif", quote: "", instagram: "https://www.instagram.com/sherrypienyc/?hl=en", twitter: "https://twitter.com/sherrypienyc", country_id: 1)
 Queen.create(name: "Widow Von'Du", season: 12, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/3/3e/WidowS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172939", freeze_frame: "", gif: "https://j.gifs.com/jZxqzP.gif", quote: "", instagram: "https://www.instagram.com/thewidowvondu/?hl=en", twitter: "https://twitter.com/TheWidowVonDu", country_id: 1)
 
+
 # *** Drag Race Holland***
 Queen.create(name: "ChelseaBoy", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/6/67/ChelseaS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201617", freeze_frame: "", gif: "https://j.gifs.com/JyJ82K.gif", quote: "", instagram: "https://www.instagram.com/xochelseaboy/?hl=en", twitter: "https://twitter.com/xoChelseaBoy", country_id: 2)
 Queen.create(name: "Envy Peru", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/8/8b/EnvyS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201640", freeze_frame: "", gif: "https://j.gifs.com/lxzRNM.gif", quote: "", instagram: "https://www.instagram.com/missenvyperu/?hl=en", twitter: "https://twitter.com/PeruEnvy", country_id: 2)
@@ -62,6 +63,7 @@ Queen.create(name: "Tynomi Banks", season: 1, grid_image: "https://static.wikia.
 Queen.create(name: "Anastarzia Anaquway", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/1/10/AnastarziaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164240", freeze_frame: "", gif: "https://j.gifs.com/1W26MG.gif", quote: "", instagram: "https://www.instagram.com/anaquway/", twitter: "https://twitter.com/Anaquway", country_id: 3)
 Queen.create(name: "Kyne", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/6/6c/KynePromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164543", freeze_frame: "", gif: "https://j.gifs.com/nxBRlp.gif", quote: "", instagram: "https://www.instagram.com/onlinekyne/", twitter: "https://twitter.com/onlinekyne", country_id: 3)
 Queen.create(name: "Juice Boxx", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/b/b6/JuicePromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164341", freeze_frame: "", gif: "https://j.gifs.com/NLNOKN.gif", quote: "", instagram: "hhttps://www.instagram.com/juiceboxxofficial/", twitter: "https://twitter.com/JuiceBoxxQueen", country_id: 3)
+
 
 # *** Teams ***
 Team.create(name: "Make it Fashion", image: "https://www.dictionary.com/e/wp-content/uploads/2018/02/nail-polish-light-skin-tone.png", user_id: 1, country_id: 1)
