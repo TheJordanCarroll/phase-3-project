@@ -1,0 +1,538 @@
+  [1m[35m (0.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "draft_queens_development"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "draft_queens_test"[0m
+  [1m[35m (171.8ms)[0m  [1m[35mCREATE DATABASE "draft_queens_development" ENCODING = 'unicode'[0m
+  [1m[35m (143.2ms)[0m  [1m[35mCREATE DATABASE "draft_queens_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (40.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments" CASCADE[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" character varying, "user_id" integer, "queen_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "contracts" CASCADE[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "contracts" ("id" bigserial primary key, "team_id" integer, "queen_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "countries" CASCADE[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "countries" ("id" bigserial primary key, "name" character varying, "image" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "queens" CASCADE[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "queens" ("id" bigserial primary key, "name" character varying, "season" integer, "grid_image" character varying, "freeze_frame" character varying, "gif" character varying, "quote" character varying, "instagram" character varying, "twitter" character varying, "country_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "teams" CASCADE[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "teams" ("id" bigserial primary key, "name" character varying, "image" character varying, "user_id" integer, "country_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "username" character varying, "email" character varying, "image" character varying, "age" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210213232835)[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210213232630),
+(20210213232729),
+(20210213232746),
+(20210213232809),
+(20210213232822);
+
+[0m
+  [1m[35m (44.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-14 22:04:24.584704"], ["updated_at", "2021-02-14 22:04:24.584704"]]
+  [1m[36mTRANSACTION (28.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "d80406a5c3717c75727255c7c14e9d05a3e466cf"], ["created_at", "2021-02-14 22:04:24.620035"], ["updated_at", "2021-02-14 22:04:24.620035"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "comments" CASCADE[0m
+  [1m[35m (29.0ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" character varying, "user_id" integer, "queen_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "contracts" CASCADE[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "contracts" ("id" bigserial primary key, "team_id" integer, "queen_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "countries" CASCADE[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCREATE TABLE "countries" ("id" bigserial primary key, "name" character varying, "image" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "queens" CASCADE[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE TABLE "queens" ("id" bigserial primary key, "name" character varying, "season" integer, "grid_image" character varying, "freeze_frame" character varying, "gif" character varying, "quote" character varying, "instagram" character varying, "twitter" character varying, "country_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "teams" CASCADE[0m
+  [1m[35m (6.2ms)[0m  [1m[35mCREATE TABLE "teams" ("id" bigserial primary key, "name" character varying, "image" character varying, "user_id" integer, "country_id" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "username" character varying, "email" character varying, "image" character varying, "age" integer, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20210213232835)[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20210213232630),
+(20210213232729),
+(20210213232746),
+(20210213232809),
+(20210213232822);
+
+[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-14 22:04:24.763950"], ["updated_at", "2021-02-14 22:04:24.763950"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.4ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-02-14 22:04:24.769757"], ["key", "environment"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "d80406a5c3717c75727255c7c14e9d05a3e466cf"], ["created_at", "2021-02-14 22:04:24.774981"], ["updated_at", "2021-02-14 22:04:24.774981"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mCountry Load (0.8ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  [1m[36mQueen Load (0.7ms)[0m  [1m[34mSELECT "queens".* FROM "queens"[0m
+  [1m[36mTeam Load (0.6ms)[0m  [1m[34mSELECT "teams".* FROM "teams"[0m
+  [1m[36mContract Load (0.6ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts"[0m
+  [1m[36mComment Load (0.7ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "email", "image", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["first_name", "Jordan"], ["last_name", "Carroll"], ["username", "jordan.carroll"], ["email", "jordancarroll1994@gmail.com"], ["image", ""], ["age", 26], ["created_at", "2021-02-14 22:04:24.914187"], ["updated_at", "2021-02-14 22:04:24.914187"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "username", "email", "image", "age", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["first_name", "Victor"], ["last_name", "Cordero"], ["username", "victor.cordero"], ["email", "victordcordero@gmail.com"], ["image", ""], ["age", 28], ["created_at", "2021-02-14 22:04:24.918767"], ["updated_at", "2021-02-14 22:04:24.918767"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Create (0.6ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "RuPaul's Drag Race"], ["image", "https://i.ibb.co/MspXcz8/Ru-Paul-s-Drag-Race-Logo.png"], ["created_at", "2021-02-14 22:04:24.929418"], ["updated_at", "2021-02-14 22:04:24.929418"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Create (0.4ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Drag Race Holland"], ["image", "https://en.wikipedia.org/wiki/Drag_Race_Holland#/media/File:Drag_Race_Holland_logo.png"], ["created_at", "2021-02-14 22:04:24.933097"], ["updated_at", "2021-02-14 22:04:24.933097"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Create (0.5ms)[0m  [1m[32mINSERT INTO "countries" ("name", "image", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Canada's Drag Race"], ["image", "https://en.wikipedia.org/wiki/Canada%27s_Drag_Race#/media/File:Canada's_Drag_Race_Logo.jpg"], ["created_at", "2021-02-14 22:04:24.936584"], ["updated_at", "2021-02-14 22:04:24.936584"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.9ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Aiden Zhane"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/f/fd/AidenS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123171748"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/ZY3V5R.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/aiden_zhane/?hl=en"], ["twitter", "https://twitter.com/Aiden_Zhane"], ["country_id", 1], ["created_at", "2021-02-14 22:04:24.978480"], ["updated_at", "2021-02-14 22:04:24.978480"]]
+  [1m[36mTRANSACTION (39.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Brita Filter"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/c/ce/BritaS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123171932"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/D1z9mK.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/thebritafilter/?hl=en"], ["twitter", "https://twitter.com/thebritafilter"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.023740"], ["updated_at", "2021-02-14 22:04:25.023740"]]
+  [1m[36mTRANSACTION (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Crystal Methyd"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/8/87/CrystalMethydS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172350"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/mOAQKr.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/crystalmethyd/?hl=en"], ["twitter", "https://twitter.com/CrystalMethyd"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.030809"], ["updated_at", "2021-02-14 22:04:25.030809"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Dahlia Sin"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/e/ec/DahliaS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172410"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/4Q5R5n.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/dahlia_sin/?hl=en"], ["twitter", "https://twitter.com/Dahlia_Sin"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.036004"], ["updated_at", "2021-02-14 22:04:25.036004"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Gigi Goode"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/d3/GigiS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172425"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/q7GYO0.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/thegigigoode/?hl=en"], ["twitter", "https://twitter.com/thegigigoode"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.041024"], ["updated_at", "2021-02-14 22:04:25.041024"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.7ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Heidi N Closet"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/0/09/HeidiS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172439"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/XL1og5.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/heidincloset/?hl=en"], ["twitter", "https://twitter.com/HeidiNCloset"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.046045"], ["updated_at", "2021-02-14 22:04:25.046045"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.6ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Jackie Cox"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/5/52/JackieS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172453"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/71jLEy.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/jackiecoxnyc/?hl=en"], ["twitter", "https://twitter.com/JackieCoxNYC"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.051349"], ["updated_at", "2021-02-14 22:04:25.051349"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.5ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Jaida Essence Hall"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/5/54/JaidaS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172825"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/JyJqLP.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/jaidaehall/?hl=en"], ["twitter", "https://twitter.com/jaidaehall"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.056540"], ["updated_at", "2021-02-14 22:04:25.056540"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Jan Sport"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/f/fd/JanS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172842"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/q7GYGG.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/janjanjan/?hl=en"], ["twitter", "https://twitter.com/jansportnyc"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.061427"], ["updated_at", "2021-02-14 22:04:25.061427"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Nicky Doll"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/6/62/NickyS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172857"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/VAYPLX.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/thenickydoll/?hl=en"], ["twitter", "https://twitter.com/thenickydoll"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.065941"], ["updated_at", "2021-02-14 22:04:25.065941"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.6ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Rock M. Sakura"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/e/ea/RockS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172911"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/XL1o1A.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/rockmsakura/?hl=en"], ["twitter", "https://twitter.com/RockMSakura"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.070429"], ["updated_at", "2021-02-14 22:04:25.070429"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Sherry Pie"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/3/31/SherryS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172925"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/71jLjr.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/sherrypienyc/?hl=en"], ["twitter", "https://twitter.com/sherrypienyc"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.077003"], ["updated_at", "2021-02-14 22:04:25.077003"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Widow Von'Du"], ["season", 12], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/3/3e/WidowS12Promo.jpg/revision/latest/scale-to-width-down/1000?cb=20200123172939"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/jZxqzP.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/thewidowvondu/?hl=en"], ["twitter", "https://twitter.com/TheWidowVonDu"], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.081956"], ["updated_at", "2021-02-14 22:04:25.081956"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "ChelseaBoy"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/6/67/ChelseaS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201617"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/JyJ82K.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/xochelseaboy/?hl=en"], ["twitter", "https://twitter.com/xoChelseaBoy"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.086653"], ["updated_at", "2021-02-14 22:04:25.086653"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Envy Peru"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/8/8b/EnvyS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201640"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/lxzRNM.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/missenvyperu/?hl=en"], ["twitter", "https://twitter.com/PeruEnvy"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.090824"], ["updated_at", "2021-02-14 22:04:25.090824"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Janey Jacké"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/2/2d/JaneyS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201706"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/ZY38oQ.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/janeyjacke/?hl=en"], ["twitter", "https://twitter.com/JaneyJackeOG"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.095183"], ["updated_at", "2021-02-14 22:04:25.095183"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Ma'Ma Queen"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/d1/MaMaS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907202047"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/k8y2PJ.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/iammamaqueen/?hl=en"], ["twitter", "https://twitter.com/Ma_MaQueen"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.099670"], ["updated_at", "2021-02-14 22:04:25.099670"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Madame Madness"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/5/50/MadameS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201727"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/zvR6oq.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/madame.madness/?hl=en"], ["twitter", "https://twitter.com/madame_madness"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.103801"], ["updated_at", "2021-02-14 22:04:25.103801"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Megan Schoonbrood"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/2/2f/MeganS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201843"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/jZxYky.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/megan_schoonbrood/?hl=en"], ["twitter", "https://twitter.com/meganschoonbro1"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.107840"], ["updated_at", "2021-02-14 22:04:25.107840"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Miss Abby OMG"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/0/00/MissAbbyS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201905"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/mOAqnR.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/missabbyomg/"], ["twitter", "https://twitter.com/MissAbbyOMG1"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.111867"], ["updated_at", "2021-02-14 22:04:25.111867"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Patty Pam-Pam"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/7/7f/PattyS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907201928"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/oVDZkY.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/pattypampam/"], ["twitter", "https://twitter.com/PieterRoberts"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.116020"], ["updated_at", "2021-02-14 22:04:25.116020"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Roem"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/8/8f/RoemS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907202142"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/NLNOR2.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/roemservice/"], ["twitter", "https://twitter.com/RoemService"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.119962"], ["updated_at", "2021-02-14 22:04:25.119962"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Sederginne"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/a/a1/SederginneS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907202009"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/4Q56J7.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/sederginne_official/"], ["twitter", "https://twitter.com/QuikSerge"], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.124286"], ["updated_at", "2021-02-14 22:04:25.124286"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.5ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Priyanka"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/0/0d/PriyankaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165050"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/91l9AY.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/thequeenpriyanka/"], ["twitter", "https://twitter.com/thequeenpri"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.141009"], ["updated_at", "2021-02-14 22:04:25.141009"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.7ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Rita Baga"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/d2/RitaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165324"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/2x38rA.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/ritabagaz/"], ["twitter", "https://twitter.com/ritabagaz"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.146901"], ["updated_at", "2021-02-14 22:04:25.146901"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Scarlett BoBo"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/dc/ScarlettBoBoPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165336"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/mOAqkn.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/itsscarlettbobo/"], ["twitter", "https://twitter.com/ItsScarlettBobo"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.151866"], ["updated_at", "2021-02-14 22:04:25.151866"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.4ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Jimbo"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/e/e5/JimboPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164328"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/D1zq7k.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/jimbothedragclown/"], ["twitter", "https://twitter.com/jimbodragclown"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.156596"], ["updated_at", "2021-02-14 22:04:25.156596"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Lemon"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/f/f2/LemonPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165035"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/71j9MO.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/lemongivesyoulife/"], ["twitter", "https://twitter.com/thatbitchlemon"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.161256"], ["updated_at", "2021-02-14 22:04:25.161256"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Ilona Verley"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/e/eb/IlonaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164313"], ["freeze_frame", "https://j.gifs.com/mOAq0n.gif"], ["gif", ""], ["quote", ""], ["instagram", "https://www.instagram.com/ilonaverley/"], ["twitter", "https://twitter.com/IlonaVerley"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.165557"], ["updated_at", "2021-02-14 22:04:25.165557"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "BOA"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/7/72/BoaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164256"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/wVO0xX.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/boathedragqueen/"], ["twitter", "https://twitter.com/bitchonarrival"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.170104"], ["updated_at", "2021-02-14 22:04:25.170104"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Kiara"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/c/c1/KiaraPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164357"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/D1zqZ5.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/kikiwannakaikai/"], ["twitter", "https://twitter.com/KIARAQCCA"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.174233"], ["updated_at", "2021-02-14 22:04:25.174233"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.2ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Tynomi Banks"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/d8/TynomiPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165521"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/YW27BY.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/tynomibanks/"], ["twitter", "https://twitter.com/TynomiBanks"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.178528"], ["updated_at", "2021-02-14 22:04:25.178528"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.5ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Anastarzia Anaquway"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/1/10/AnastarziaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164240"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/1W26MG.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/anaquway/"], ["twitter", "https://twitter.com/Anaquway"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.182513"], ["updated_at", "2021-02-14 22:04:25.182513"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Kyne"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/6/6c/KynePromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164543"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/nxBRlp.gif"], ["quote", ""], ["instagram", "https://www.instagram.com/onlinekyne/"], ["twitter", "https://twitter.com/onlinekyne"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.186918"], ["updated_at", "2021-02-14 22:04:25.186918"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCountry Load (0.1ms)[0m  [1m[34mSELECT "countries".* FROM "countries" WHERE "countries"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mQueen Create (0.3ms)[0m  [1m[32mINSERT INTO "queens" ("name", "season", "grid_image", "freeze_frame", "gif", "quote", "instagram", "twitter", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING "id"[0m  [["name", "Juice Boxx"], ["season", 1], ["grid_image", "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/b/b6/JuicePromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514164341"], ["freeze_frame", ""], ["gif", "https://j.gifs.com/NLNOKN.gif"], ["quote", ""], ["instagram", "hhttps://www.instagram.com/juiceboxxofficial/"], ["twitter", "https://twitter.com/JuiceBoxxQueen"], ["country_id", 3], ["created_at", "2021-02-14 22:04:25.190879"], ["updated_at", "2021-02-14 22:04:25.190879"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeam Create (0.4ms)[0m  [1m[32mINSERT INTO "teams" ("name", "image", "user_id", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Make it Fashion"], ["image", "https://www.dictionary.com/e/wp-content/uploads/2018/02/nail-polish-light-skin-tone.png"], ["user_id", 1], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.202992"], ["updated_at", "2021-02-14 22:04:25.202992"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTeam Create (0.5ms)[0m  [1m[32mINSERT INTO "teams" ("name", "image", "user_id", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "M&M&M"], ["image", "https://ih1.redbubble.net/image.1006254054.9061/flat,750x,075,f-pad,750x1000,f8f8f8.jpg"], ["user_id", 1], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.208912"], ["updated_at", "2021-02-14 22:04:25.208912"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeam Create (0.3ms)[0m  [1m[32mINSERT INTO "teams" ("name", "image", "user_id", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "New Nork or Nowhere"], ["image", "https://americaniconstemeple.files.wordpress.com/2013/02/lady-liberty.jpeg"], ["user_id", 2], ["country_id", 1], ["created_at", "2021-02-14 22:04:25.214458"], ["updated_at", "2021-02-14 22:04:25.214458"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeam Create (0.3ms)[0m  [1m[32mINSERT INTO "teams" ("name", "image", "user_id", "country_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Team Tulip"], ["image", "https://previews.123rf.com/images/ivonnewierink/ivonnewierink1201/ivonnewierink120100093/11934066-typical-dutch-wooden-clog-with-tulips.jpg"], ["user_id", 2], ["country_id", 2], ["created_at", "2021-02-14 22:04:25.218511"], ["updated_at", "2021-02-14 22:04:25.218511"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mComment Create (0.5ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Sickening looks, but the personality is giving unseasoned."], ["user_id", 1], ["queen_id", 4], ["created_at", "2021-02-14 22:04:25.231119"], ["updated_at", "2021-02-14 22:04:25.231119"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "The mug is everything and she is super smart. Tacky Claire's-looking accessories, though.."], ["user_id", 1], ["queen_id", 17], ["created_at", "2021-02-14 22:04:25.236396"], ["updated_at", "2021-02-14 22:04:25.236396"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mComment Create (0.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Performances are on point. Questionable sense of humor (or lack thereof)."], ["user_id", 2], ["queen_id", 2], ["created_at", "2021-02-14 22:04:25.241803"], ["updated_at", "2021-02-14 22:04:25.241803"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mComment Create (0.2ms)[0m  [1m[32mINSERT INTO "comments" ("content", "user_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Haven't gotten to research her yet, but the name is so stupid...I'm obsessed."], ["user_id", 2], ["queen_id", 21], ["created_at", "2021-02-14 22:04:25.247123"], ["updated_at", "2021-02-14 22:04:25.247123"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.3ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.2ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mContract Create (0.4ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 1], ["queen_id", 4], ["created_at", "2021-02-14 22:04:25.268991"], ["updated_at", "2021-02-14 22:04:25.268991"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.4ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mContract Create (0.9ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 1], ["queen_id", 5], ["created_at", "2021-02-14 22:04:25.276198"], ["updated_at", "2021-02-14 22:04:25.276198"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.5ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.4ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 1], ["queen_id", 10], ["created_at", "2021-02-14 22:04:25.283883"], ["updated_at", "2021-02-14 22:04:25.283883"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["queen_id", 17], ["created_at", "2021-02-14 22:04:25.289940"], ["updated_at", "2021-02-14 22:04:25.289940"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 18], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.2ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["queen_id", 18], ["created_at", "2021-02-14 22:04:25.295677"], ["updated_at", "2021-02-14 22:04:25.295677"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.1ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.2ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mContract Create (0.2ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 2], ["queen_id", 19], ["created_at", "2021-02-14 22:04:25.301130"], ["updated_at", "2021-02-14 22:04:25.301130"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.1ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.2ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 3], ["queen_id", 2], ["created_at", "2021-02-14 22:04:25.306618"], ["updated_at", "2021-02-14 22:04:25.306618"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.1ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.1ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 3], ["queen_id", 7], ["created_at", "2021-02-14 22:04:25.311411"], ["updated_at", "2021-02-14 22:04:25.311411"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.1ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mContract Create (0.2ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 3], ["queen_id", 9], ["created_at", "2021-02-14 22:04:25.316765"], ["updated_at", "2021-02-14 22:04:25.316765"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.1ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.1ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 4], ["queen_id", 21], ["created_at", "2021-02-14 22:04:25.321850"], ["updated_at", "2021-02-14 22:04:25.321850"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 22], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.1ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mContract Create (0.3ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 4], ["queen_id", 22], ["created_at", "2021-02-14 22:04:25.326900"], ["updated_at", "2021-02-14 22:04:25.326900"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mQueen Load (0.1ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mTeam Load (0.2ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mContract Create (0.2ms)[0m  [1m[32mINSERT INTO "contracts" ("team_id", "queen_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["team_id", 4], ["queen_id", 23], ["created_at", "2021-02-14 22:04:25.331972"], ["updated_at", "2021-02-14 22:04:25.331972"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mQueen Load (0.6ms)[0m  [1m[34mSELECT "queens".* FROM "queens" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCountry Load (0.4ms)[0m  [1m[34mSELECT "countries".* FROM "countries" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mCountry Load (0.3ms)[0m  [1m[34mSELECT "countries".* FROM "countries" ORDER BY "countries"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started GET "/" for ::1 at 2021-02-14 17:20:03 -0500
+  [1m[35m (41.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/victorcordero/.rvm/gems/ruby-2.6.1/gems/railties-6.1.2.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/victorcordero/.rvm/gems/ruby-2.6.1/gems/railties-6.1.2.1/lib/rails/templates/rails/welcome/index.html.erb (Duration: 9.3ms | Allocations: 480)
+Completed 200 OK in 32ms (Views: 15.8ms | ActiveRecord: 0.0ms | Allocations: 4150)
+
+
+Started GET "/queens" for ::1 at 2021-02-14 17:20:10 -0500
+Processing by QueensController#index as HTML
+  [1m[36mQueen Load (0.7ms)[0m  [1m[34mSELECT "queens".* FROM "queens"[0m
+  ↳ app/controllers/queens_controller.rb:4:in `index'
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 20.6ms | Allocations: 12934)
+
+
+  
+NameError (undefined local variable or method `country_id' for QueenSerializer:Class):
+  
+app/serializers/queen_serializer.rb:2:in `<class:QueenSerializer>'
+app/serializers/queen_serializer.rb:1:in `<main>'
+app/controllers/queens_controller.rb:4:in `index'
+Started GET "/queen" for ::1 at 2021-02-14 17:20:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/queen"):
+  
+Started GET "/user" for ::1 at 2021-02-14 17:20:25 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/user"):
+  
+Started GET "/users" for ::1 at 2021-02-14 17:20:29 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+Started GET "/country" for ::1 at 2021-02-14 17:20:34 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/country"):
+  
+Started GET "/contracts" for ::1 at 2021-02-14 17:20:47 -0500
+Processing by ContractsController#index as HTML
+  [1m[36mContract Load (0.8ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts"[0m
+  ↳ app/controllers/contracts_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.49ms)
+Completed 200 OK in 30ms (Views: 20.9ms | ActiveRecord: 7.6ms | Allocations: 7451)
+
+
+Started GET "/countries" for ::1 at 2021-02-14 17:21:07 -0500
+Processing by CountriesController#index as HTML
+  [1m[36mCountry Load (0.5ms)[0m  [1m[34mSELECT "countries".* FROM "countries"[0m
+  ↳ app/controllers/countries_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (0.43ms)
+Completed 200 OK in 14ms (Views: 6.3ms | ActiveRecord: 4.7ms | Allocations: 5891)
+
+
+Started GET "/comments" for ::1 at 2021-02-14 17:21:18 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/comments"):
+  
+Started GET "/queens" for ::1 at 2021-02-14 17:21:33 -0500
+Processing by QueensController#index as HTML
+  [1m[36mQueen Load (0.4ms)[0m  [1m[34mSELECT "queens".* FROM "queens"[0m
+  ↳ app/controllers/queens_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.32ms)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.4ms | Allocations: 3725)
+
+
+Started GET "/queens/1" for ::1 at 2021-02-14 17:21:54 -0500
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeam Load (0.7ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:17:in `show'
+[active_model_serializers] Rendered TeamSerializer with ActiveModelSerializers::Adapter::Attributes (0.43ms)
+Completed 200 OK in 16ms (Views: 2.1ms | ActiveRecord: 4.6ms | Allocations: 6589)
+
+
+Started GET "/teams" for ::1 at 2021-02-14 17:22:19 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/teams"):
+  
+Started GET "/teams/1" for ::1 at 2021-02-14 17:22:36 -0500
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:17:in `show'
+[active_model_serializers] Rendered TeamSerializer with ActiveModelSerializers::Adapter::Attributes (0.18ms)
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.3ms | Allocations: 699)
+
+
+Started GET "/user/1" for ::1 at 2021-02-14 17:22:52 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/user/1"):
+  
+Started GET "/users1" for ::1 at 2021-02-14 17:22:55 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/users1"):
+  
+Started GET "/users/1" for ::1 at 2021-02-14 17:23:04 -0500
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:17:in `show'
+[active_model_serializers] Rendered UserSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 200 OK in 17ms (Views: 1.8ms | ActiveRecord: 4.3ms | Allocations: 7879)
+
+
+Started GET "/queens" for ::1 at 2021-02-14 17:24:11 -0500
+Processing by QueensController#index as HTML
+  [1m[36mQueen Load (0.4ms)[0m  [1m[34mSELECT "queens".* FROM "queens"[0m
+  ↳ app/controllers/queens_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (4.24ms)
+Completed 200 OK in 24ms (Views: 15.0ms | ActiveRecord: 5.6ms | Allocations: 16001)
+
+
+Started GET "/queens/1" for ::1 at 2021-02-14 17:24:19 -0500
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:17:in `show'
+[active_model_serializers] Rendered TeamSerializer with ActiveModelSerializers::Adapter::Attributes (0.46ms)
+Completed 200 OK in 15ms (Views: 2.0ms | ActiveRecord: 4.0ms | Allocations: 6123)
+
+
+Started GET "/queens/1" for ::1 at 2021-02-14 17:26:37 -0500
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:17:in `show'
+[active_model_serializers] Rendered TeamSerializer with ActiveModelSerializers::Adapter::Attributes (0.29ms)
+Completed 200 OK in 21ms (Views: 1.3ms | ActiveRecord: 10.3ms | Allocations: 6349)
+
+
+Started GET "/favicon.ico" for ::1 at 2021-02-14 17:26:37 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+Started GET "/queens" for ::1 at 2021-02-14 17:26:40 -0500
+Processing by QueensController#index as HTML
+  [1m[36mQueen Load (0.3ms)[0m  [1m[34mSELECT "queens".* FROM "queens"[0m
+  ↳ app/controllers/queens_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (5.26ms)
+Completed 200 OK in 30ms (Views: 22.1ms | ActiveRecord: 4.8ms | Allocations: 15782)
+
+
+Started GET "/queens/2" for ::1 at 2021-02-14 17:26:44 -0500
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mTeam Load (0.3ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:17:in `show'
+[active_model_serializers] Rendered TeamSerializer with ActiveModelSerializers::Adapter::Attributes (0.25ms)
+Completed 200 OK in 2ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 692)
+
+
+Started GET "/queens/8" for ::1 at 2021-02-14 17:26:49 -0500
+Processing by TeamsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mTeam Load (0.6ms)[0m  [1m[34mSELECT "teams".* FROM "teams" WHERE "teams"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/teams_controller.rb:17:in `show'
+Completed 404 Not Found in 4ms (ActiveRecord: 0.6ms | Allocations: 517)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Team with 'id'=8):
+  
+app/controllers/teams_controller.rb:17:in `show'
+Started GET "/queens/8" for ::1 at 2021-02-14 17:27:20 -0500
+Processing by QueensController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mQueen Load (0.2ms)[0m  [1m[34mSELECT "queens".* FROM "queens" WHERE "queens"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/queens_controller.rb:8:in `show'
+[active_model_serializers] Rendered QueenSerializer with ActiveModelSerializers::Adapter::Attributes (0.5ms)
+Completed 200 OK in 26ms (Views: 1.8ms | ActiveRecord: 4.4ms | Allocations: 9027)
+
+
+Started GET "/comments" for ::1 at 2021-02-14 17:27:28 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/comments"):
+  
+Started GET "/comments/1" for ::1 at 2021-02-14 17:27:49 -0500
+Processing by CommentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mComment Load (0.4ms)[0m  [1m[34mSELECT "comments".* FROM "comments" WHERE "comments"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/comments_controller.rb:13:in `show'
+[active_model_serializers] Rendered CommentSerializer with ActiveModelSerializers::Adapter::Attributes (0.31ms)
+Completed 200 OK in 15ms (Views: 2.5ms | ActiveRecord: 6.2ms | Allocations: 4762)
+
+
+Started GET "/contracts" for ::1 at 2021-02-14 17:28:08 -0500
+Processing by ContractsController#index as HTML
+  [1m[36mContract Load (0.3ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts"[0m
+  ↳ app/controllers/contracts_controller.rb:4:in `index'
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.07ms)
+Completed 200 OK in 15ms (Views: 7.3ms | ActiveRecord: 5.4ms | Allocations: 5467)
+
+
+Started GET "/contracts/1" for ::1 at 2021-02-14 17:28:12 -0500
+Processing by ContractsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContract Load (0.2ms)[0m  [1m[34mSELECT "contracts".* FROM "contracts" WHERE "contracts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/contracts_controller.rb:22:in `show'
+[active_model_serializers] Rendered ContractSerializer with ActiveModelSerializers::Adapter::Attributes (0.16ms)
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 748)
+
+
