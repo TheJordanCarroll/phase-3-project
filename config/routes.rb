@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch '/users/:id', to: 'users#update'
   # post ‘/login’, to: 'users#login'
 
+  get '/teams', to: 'teams#index'
   get '/teams/new', to: 'teams#new'
   post '/teams', to: 'teams#create'
   get '/teams/:id', to: 'teams#show'
