@@ -14,8 +14,8 @@ Contract.destroy_all
 Comment.destroy_all
 
 # *** Users ***
-User.create(first_name: "Jordan", last_name: "Carroll", username: "jordan.carroll", email: "jordancarroll1994@gmail.com", age: 26, image: "")
-User.create(first_name: "Victor", last_name: "Cordero", username: "victor.cordero", email: "victordcordero@gmail.com", age: 28, image: "")
+User.create(username: "jordan.carroll")
+User.create(username: "victor.cordero")
 
 # *** Countries ***
 Country.create(name: "RuPaul's Drag Race", image: "https://pyxis.nymag.com/v1/imgs/127/733/46e112803e06c39555460216af9c7b1e96-rupauls-drag-race-season-12.2x.rsocial.w600.jpg")
