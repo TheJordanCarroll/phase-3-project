@@ -34,6 +34,12 @@ class TeamsController < ApplicationController
         render json: @team
     end
 
+    def destroy
+        @team = Team.find(params[:id])
+        @team.destroy
+        render json: @team
+    end
+
     private
     def team_params
         params.require(:team).permit(:name, :image, :user_id, :country_id)

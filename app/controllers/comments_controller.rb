@@ -30,8 +30,10 @@ class CommentsController < ApplicationController
         render json: @comment
     end
 
-    def delete
-        Comment.destroy(params[:id])
+    def destroy
+        @comment = Comment.find(params[:id])
+        @comment.destroy
+        render json: @comment
     end
 
     private
