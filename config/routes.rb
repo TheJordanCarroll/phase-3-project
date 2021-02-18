@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/countries', to: 'countries#index'
   get '/countries/:id', to: 'countries#show'
 
+  get '/comments/', to: 'comments#index'
   get '/comments/new', to: 'comments#new'
   post '/comments', to: 'comments#create'
   get '/comments/:id', to: 'comments#show'
