@@ -14,7 +14,13 @@ class ContractsController < ApplicationController
             render json: {error: 'You have already added this queen to your team. Please select a different queen.'}
         else
             @contract = Contract.create(contract_params)
-            render json: @contract
+            # byebug
+            contractArray = []
+            params[:queen_id].each do |queen_id| 
+                contract = Contract.create(team_id: params[:team_id], queen_id: queen_id)
+                contractArray << contract
+            end
+            render json: contractArray
         end
     end
 
@@ -30,7 +36,7 @@ class ContractsController < ApplicationController
 
     def update
         @contract = Contract.find(params[:id])
-        @contract.update(Contract_params)
+        @contract.update(contract_params)
         render json: @contract
     end
 
