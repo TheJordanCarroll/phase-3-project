@@ -36,7 +36,7 @@ class ContractsController < ApplicationController
 
     def update
         @contract = Contract.find(params[:id])
-        @contract.update(Contract_params)
+        @contract.update(contract_params)
         render json: @contract
     end
 
