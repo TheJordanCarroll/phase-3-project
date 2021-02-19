@@ -50,7 +50,7 @@ Queen.create(name: "Patty Pam-Pam", season: 1, grid_image: "https://static.wikia
 Queen.create(name: "Roem", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/8/8f/RoemS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907202142", freeze_frame: "", gif: "https://j.gifs.com/NLNOR2.gif", quote: "", instagram: "https://www.instagram.com/roemservice/", twitter: "https://twitter.com/RoemService", country_id: 2)
 Queen.create(name: "Sederginne", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/a/a1/SederginneS1Promo.jpg/revision/latest/scale-to-width-down/750?cb=20200907202009", freeze_frame: "", gif: "https://j.gifs.com/4Q56J7.gif", quote: "", instagram: "https://www.instagram.com/sederginne_official/", twitter: "https://twitter.com/QuikSerge", country_id: 2)
 
-# *** Drag Race Canada***
+# *** Drag Race Canada (24) 24, 27, 28***
 Queen.create(name: "Priyanka", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/0/0d/PriyankaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165050", freeze_frame: "", gif: "https://j.gifs.com/91l9AY.gif", quote: "", instagram: "https://www.instagram.com/thequeenpriyanka/", twitter: "https://twitter.com/thequeenpri", country_id: 3)
 Queen.create(name: "Rita Baga", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/d2/RitaPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165324", freeze_frame: "", gif: "https://j.gifs.com/2x38rA.gif", quote: "", instagram: "https://www.instagram.com/ritabagaz/", twitter: "https://twitter.com/ritabagaz", country_id: 3)
 Queen.create(name: "Scarlett BoBo", season: 1, grid_image: "https://static.wikia.nocookie.net/logosrupaulsdragrace/images/d/dc/ScarlettBoBoPromo.jpg/revision/latest/scale-to-width-down/720?cb=20200514165336", freeze_frame: "", gif: "https://j.gifs.com/mOAqkn.gif", quote: "", instagram: "https://www.instagram.com/itsscarlettbobo/", twitter: "https://twitter.com/ItsScarlettBobo", country_id: 3)
@@ -70,6 +70,8 @@ Team.create(name: "Make it Fashion", image: "https://www.dictionary.com/e/wp-con
 Team.create(name: "M&M&M", image: "https://ih1.redbubble.net/image.1006254054.9061/flat,750x,075,f-pad,750x1000,f8f8f8.jpg", user_id: 1, country_id: 2)
 Team.create(name: "New Nork or Nowhere", image: "https://americaniconstemeple.files.wordpress.com/2013/02/lady-liberty.jpeg", user_id: 2, country_id: 1)
 Team.create(name: "Team Tulip", image: "https://previews.123rf.com/images/ivonnewierink/ivonnewierink1201/ivonnewierink120100093/11934066-typical-dutch-wooden-clog-with-tulips.jpg", user_id: 2, country_id: 2)
+Team.create(name: "Trifecta", image: "https://ae01.alicdn.com/kf/HTB1W5ITOVXXXXbcXVXXq6xXFXXXr/maple-leaf-mascot-costume-custom-fancy-costume-anime-cosplay-kit-mascotte-theme-fancy-dress-carnival-costume.jpg", user_id: 1, country_id: 3)
+Team.create(name: "Triple Threat", image: "https://upload.wikimedia.org/wikipedia/en/b/b6/Mountiesvsinvaders.JPG", user_id: 2, country_id: 3)
 
 # *** Comments ***
 Comment.create(content: "Sickening looks, but the personality is giving unseasoned.", user_id: 1, queen_id: 4)
@@ -90,3 +92,9 @@ Contract.create(team_id: 3, queen_id: 9)
 Contract.create(team_id: 4, queen_id: 21)
 Contract.create(team_id: 4, queen_id: 22)
 Contract.create(team_id: 4, queen_id: 23)
+Contract.create(team_id: 5, queen_id: 24)
+Contract.create(team_id: 5, queen_id: 27)
+Contract.create(team_id: 5, queen_id: 28)
+Contract.create(team_id: 6, queen_id: 25)
+Contract.create(team_id: 6, queen_id: 26)
+Contract.create(team_id: 6, queen_id: 29)
